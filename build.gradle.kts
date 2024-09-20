@@ -1,6 +1,7 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.tasks.aware.SplitModeAware
 
 plugins {
     id("java") // Java support
@@ -154,4 +155,9 @@ intellijPlatformTesting {
             }
         }
     }
+}
+
+val runSplitIde by intellijPlatformTesting.runIde.registering {
+    splitMode = true
+    splitModeTarget = SplitModeAware.SplitModeTarget.BACKEND
 }
